@@ -50,7 +50,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Interactive Flows
     'flows.kicker': 'Fluxos Interativos Antes vs. Depois',
-    'flows.heading': 'A diferença entre processos manuais e a Skale Tech.',
+    'flows.heading': 'A diferença entre processos manuais e a Skale.',
     'flows.sub': 'Selecione um cenário para inspecionar cada etapa da automação em tempo real.',
     'flows.tab.sales': 'Vendas e WhatsApp 24/7',
     'flows.tab.fiscal': 'Conciliação e Emissão Fiscal',
@@ -77,7 +77,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Case Studies
     'cases.kicker': 'Resultados Comprovados',
-    'cases.heading': 'PMEs que escalaram suas operações com a Skale Tech.',
+    'cases.heading': 'PMEs que escalaram suas operações com a Skale.',
     'cases.sub': 'Resultados reais mensurados diretamente no caixa e no tempo das equipes.',
     'cases.tag.verified': 'Auditoria de Processos Concluída',
 
@@ -118,7 +118,7 @@ const translations: Record<Language, Record<string, string>> = {
     'modal.bookingSuccess': 'Reunião agendada com sucesso! Enviamos a confirmação e link do Google Meet para seu contato.',
 
     // Footer
-    'footer.rights': 'Todos os direitos reservados. Skale Tech Software House Ltda.',
+    'footer.rights': 'Todos os direitos reservados. Skale Software House Ltda.',
     'footer.compliance': 'Em conformidade com a LGPD e padrões corporativos de segurança de dados.',
     'footer.contact': 'Contato Direto',
     'footer.location': 'São Paulo, SP · Brasil',
@@ -165,7 +165,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Interactive Flows
     'flows.kicker': 'Interactive Flows: Before vs. After',
-    'flows.heading': 'The difference between manual tasks and Skale Tech.',
+    'flows.heading': 'The difference between manual tasks and Skale.',
     'flows.sub': 'Choose an operational scenario to inspect every automation step in real time.',
     'flows.tab.sales': '24/7 Sales & WhatsApp',
     'flows.tab.fiscal': 'ERP & Financial Reconciliation',
@@ -192,7 +192,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Case Studies
     'cases.kicker': 'Proven Impact',
-    'cases.heading': 'SMBs scaling their operations with Skale Tech.',
+    'cases.heading': 'SMBs scaling their operations with Skale.',
     'cases.sub': 'Real metrics measured directly on bottom-line margins and team output.',
     'cases.tag.verified': 'Process Audit Verified',
 
@@ -233,7 +233,7 @@ const translations: Record<Language, Record<string, string>> = {
     'modal.bookingSuccess': 'Meeting confirmed! Google Meet link and details sent to your contact.',
 
     // Footer
-    'footer.rights': 'All rights reserved. Skale Tech Software House.',
+    'footer.rights': 'All rights reserved. Skale Software House.',
     'footer.compliance': 'Fully compliant with LGPD, GDPR, and enterprise data security protocols.',
     'footer.contact': 'Direct Inquiries',
     'footer.location': 'São Paulo, SP · Brazil',

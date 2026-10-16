@@ -1,138 +1,112 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext.tsx';
-import { Sparkles, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface GlobalNavProps {
   onOpenDiagnosis: () => void;
 }
 
+/** Floating capsule navigation: Paper White, 32px radius, backdrop blur. */
 export const GlobalNav: React.FC<GlobalNavProps> = ({ onOpenDiagnosis }) => {
   const { language, setLanguage, t } = useLanguage();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const isPt = language === 'pt';
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  const links = [
+    { href: '#solucoes', label: t('nav.solutions') },
+    { href: '#demonstracoes', label: isPt ? 'Antes vs Depois' : 'Before vs After' },
+    { href: '#simulador', label: t('nav.simulator') },
+    { href: '#sobre', label: isPt ? 'Sobre' : 'About' },
+    { href: '#casos', label: t('nav.cases') },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-[#ffffff]/90 backdrop-blur-md border-b border-[#e6e6e8] transition-colors">
-      <div className="max-w-[1140px] mx-auto px-6 h-[44px] flex items-center justify-between gap-8 text-[12px] text-[#1d1d1f]">
-        {/* Brand Zone */}
-        <a
-          href="#"
-          className="flex items-center gap-2 font-semibold tracking-[-0.01em] text-[#1d1d1f] whitespace-nowrap shrink-0 hover:opacity-80 transition-opacity"
-        >
-          <div className="w-4 h-4 rounded-sm bg-[#1d1d1f] flex items-center justify-center text-white text-[10px] font-bold">
-            S
-          </div>
-          <span className="text-[13px] tracking-tight">Skale Tech</span>
-        </a>
+    <header className="fixed top-5 inset-x-0 z-50 px-4 pointer-events-none">
+      <div
+        className={`pointer-events-auto mx-auto max-w-[1040px] rounded-[32px] bg-white/85 backdrop-blur-[16px] transition-shadow duration-500 ${
+          scrolled ? 'shadow-[0_2px_16px_rgba(0,0,0,0.12)]' : 'shadow-[0_0_16px_-8px_rgba(0,0,0,0.25)]'
+        }`}
+      >
+        <div className="h-[60px] pl-7 pr-3 flex items-center justify-between gap-4">
+          <a href="#" className="flex items-center gap-2.5 text-[18px] font-medium tracking-[0.162px] text-ink shrink-0">
+            <span className="w-7 h-7 rounded-[9px] bg-charcoal text-cloud-card flex items-center justify-center text-[14px] font-semibold">
+              S
+            </span>
+            Skale
+          </a>
 
-        {/* Navigation Links Zone */}
-        <nav className="hidden md:flex items-center gap-7 text-[#707070] font-normal tracking-[-0.12px]">
-          <a href="#solucoes" className="hover:text-[#1d1d1f] transition-colors whitespace-nowrap shrink-0">
-            {t('nav.solutions')}
-          </a>
-          <a href="#simulador" className="hover:text-[#1d1d1f] transition-colors whitespace-nowrap shrink-0">
-            {t('nav.simulator')}
-          </a>
-          <a href="#demonstracoes" className="hover:text-[#1d1d1f] transition-colors whitespace-nowrap shrink-0">
-            {t('nav.flows')}
-          </a>
-          <a href="#casos" className="hover:text-[#1d1d1f] transition-colors whitespace-nowrap shrink-0">
-            {t('nav.cases')}
-          </a>
-          <a href="#metodologia" className="hover:text-[#1d1d1f] transition-colors whitespace-nowrap shrink-0">
-            {t('nav.methodology')}
-          </a>
-        </nav>
+          <nav className="hidden lg:flex items-center gap-8 text-[16px] font-medium">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="text-body-gray hover:text-ink transition-colors whitespace-nowrap">
+                {l.label}
+              </a>
+            ))}
+          </nav>
 
-        {/* Action & Language Zone */}
-        <div className="flex items-center gap-4 shrink-0">
-          {/* Language Switcher */}
-          <div className="flex items-center rounded-full bg-[#f5f5f7] p-0.5 border border-[#d6d6d6]">
+          <div className="flex items-center gap-3 shrink-0">
+            <div className="hidden sm:flex items-center rounded-full bg-cloud-card p-0.5">
+              {(['pt', 'en'] as const).map((lng) => (
+                <button
+                  key={lng}
+                  onClick={() => setLanguage(lng)}
+                  className={`px-3 py-1 text-[12px] rounded-full font-medium transition-all ${
+                    language === lng ? 'bg-white text-ink shadow-[0_0_8px_-2px_rgba(0,0,0,0.25)]' : 'text-body-gray hover:text-ink'
+                  }`}
+                >
+                  {lng.toUpperCase()}
+                </button>
+              ))}
+            </div>
+
             <button
-              onClick={() => setLanguage('pt')}
-              className={`px-2 py-0.5 text-[11px] rounded-full transition-all font-medium ${
-                language === 'pt' ? 'bg-[#ffffff] text-[#1d1d1f] shadow-xs' : 'text-[#86868b] hover:text-[#1d1d1f]'
-              }`}
+              onClick={onOpenDiagnosis}
+              className="hidden sm:inline-flex h-11 px-5 items-center text-[16px] font-medium text-cloud-card bg-charcoal hover:bg-[#2c2d34] rounded-[128px] transition-colors whitespace-nowrap"
             >
-              PT
+              {t('nav.book')}
             </button>
+
             <button
-              onClick={() => setLanguage('en')}
-              className={`px-2 py-0.5 text-[11px] rounded-full transition-all font-medium ${
-                language === 'en' ? 'bg-[#ffffff] text-[#1d1d1f] shadow-xs' : 'text-[#86868b] hover:text-[#1d1d1f]'
-              }`}
+              onClick={() => setOpen(!open)}
+              className="lg:hidden w-11 h-11 flex items-center justify-center rounded-full text-ink hover:bg-cloud-card"
+              aria-label={isPt ? 'Abrir menu' : 'Open menu'}
             >
-              EN
+              {open ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
-
-          {/* Primary CTA */}
-          <button
-            onClick={onOpenDiagnosis}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1 text-[12px] font-normal text-white bg-[#0071e3] hover:bg-[#0077ed] rounded-full transition-colors whitespace-nowrap shrink-0 tracking-[-0.12px]"
-          >
-            <span>{t('nav.book')}</span>
-          </button>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-1 text-[#1d1d1f] hover:text-[#707070]"
-            aria-label="Abrir menu"
-          >
-            {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
         </div>
+
+        {open && (
+          <div className="lg:hidden px-4 pb-4 pt-1 flex flex-col text-[17px] font-medium">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="px-3 py-3 rounded-2xl text-ink hover:bg-cloud-card"
+              >
+                {l.label}
+              </a>
+            ))}
+            <button
+              onClick={() => {
+                setOpen(false);
+                onOpenDiagnosis();
+              }}
+              className="mt-2 h-12 text-[16px] font-medium text-cloud-card bg-charcoal rounded-[128px]"
+            >
+              {t('nav.book')}
+            </button>
+          </div>
+        )}
       </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-[#ffffff] border-b border-[#e6e6e8] px-6 py-4 flex flex-col gap-3 text-[14px]">
-          <a
-            href="#solucoes"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 text-[#1d1d1f] hover:text-[#0071e3]"
-          >
-            {t('nav.solutions')}
-          </a>
-          <a
-            href="#simulador"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 text-[#1d1d1f] hover:text-[#0071e3]"
-          >
-            {t('nav.simulator')}
-          </a>
-          <a
-            href="#demonstracoes"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 text-[#1d1d1f] hover:text-[#0071e3]"
-          >
-            {t('nav.flows')}
-          </a>
-          <a
-            href="#casos"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 text-[#1d1d1f] hover:text-[#0071e3]"
-          >
-            {t('nav.cases')}
-          </a>
-          <a
-            href="#metodologia"
-            onClick={() => setMobileMenuOpen(false)}
-            className="py-1 text-[#1d1d1f] hover:text-[#0071e3]"
-          >
-            {t('nav.methodology')}
-          </a>
-          <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenDiagnosis();
-            }}
-            className="mt-2 w-full py-2.5 text-center text-[13px] font-medium text-white bg-[#0071e3] rounded-full"
-          >
-            {t('nav.book')}
-          </button>
-        </div>
-      )}
     </header>
   );
 };

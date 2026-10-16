@@ -2,6 +2,8 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext.tsx';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal.tsx';
+import { useSpotlight } from '../hooks/useSpotlight.ts';
+import { MagneticButton } from './ui/MagneticButton.tsx';
 
 interface MethodologyStepsProps {
   onOpenDiagnosis: () => void;
@@ -10,59 +12,47 @@ interface MethodologyStepsProps {
 export const MethodologySteps: React.FC<MethodologyStepsProps> = ({ onOpenDiagnosis }) => {
   const { t, language } = useLanguage();
   const isPt = language === 'pt';
+  const ref = useSpotlight<HTMLElement>(210);
 
   const steps = [
     {
       num: '01',
       title: t('method.step1.title'),
       desc: t('method.step1.desc'),
-      deliverable: isPt
-        ? 'Entregável: Matriz de Gargalos e Cálculo de ROI Detalhado'
-        : 'Deliverable: Bottleneck Mapping & Audited ROI Model',
+      deliverable: isPt ? 'Matriz de gargalos e ROI detalhado' : 'Bottleneck matrix & audited ROI model',
       duration: isPt ? 'Semana 1' : 'Week 1',
     },
     {
       num: '02',
       title: t('method.step2.title'),
       desc: t('method.step2.desc'),
-      deliverable: isPt
-        ? 'Entregável: Protótipo Funcional em Ambiente Staging'
-        : 'Deliverable: Staging Sandbox & Agent Validation',
+      deliverable: isPt ? 'Protótipo funcional em staging' : 'Working prototype in staging',
       duration: isPt ? 'Semana 2' : 'Week 2',
     },
     {
       num: '03',
       title: t('method.step3.title'),
       desc: t('method.step3.desc'),
-      deliverable: isPt
-        ? 'Entregável: Webhooks e Conexões Ativas em Produção'
-        : 'Deliverable: Live API Connections & Zero-Downtime Rollout',
+      deliverable: isPt ? 'Conexões ativas em produção' : 'Live production connections',
       duration: isPt ? 'Semana 3' : 'Week 3',
     },
     {
       num: '04',
       title: t('method.step4.title'),
       desc: t('method.step4.desc'),
-      deliverable: isPt
-        ? 'Entregável: Treinamento da Equipe e Painel de Telemetria'
-        : 'Deliverable: Staff Enablement & Telemetry Dashboard',
+      deliverable: isPt ? 'Equipe treinada + painel de telemetria' : 'Trained team + telemetry dashboard',
       duration: isPt ? 'Semana 4' : 'Week 4',
     },
   ];
 
   return (
-    <section id="metodologia" className="bg-[#f5f5f7] py-24 transition-colors">
+    <section id="metodologia" ref={ref} className="section-y relative">
       <div className="max-w-[1140px] mx-auto px-6">
-        {/* Section Header */}
         <ScrollReveal yOffset={20}>
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[14px] font-medium text-[#707070] tracking-[-0.224px] block mb-2">
-              {t('method.kicker')}
-            </span>
-            <h2 className="text-feature-heading text-[#1d1d1f] mb-4">
-              {t('method.heading')}
-            </h2>
-            <p className="text-[17px] text-[#707070] font-normal leading-[1.47] tracking-[-0.374px]">
+          <div className="max-w-[720px] mb-14">
+            <span className="text-eyebrow block mb-4">{t('method.kicker')}</span>
+            <h2 className="text-heading mb-5">{t('method.heading')}</h2>
+            <p className="text-[18px] leading-[1.55] text-muted-steel">
               {isPt
                 ? 'Processo de engenharia transparente, sem riscos operacionais e focado em retorno financeiro rápido.'
                 : 'Predictable engineering cycles designed to minimize operational risk and maximize fast time-to-value.'}
@@ -70,65 +60,51 @@ export const MethodologySteps: React.FC<MethodologyStepsProps> = ({ onOpenDiagno
           </div>
         </ScrollReveal>
 
-        {/* 4 Clean Editorial Cards with Staggered ScrollReveal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-28">
           {steps.map((step, idx) => (
-            <ScrollReveal
-              key={idx}
-              delay={idx * 0.1}
-              yOffset={24}
-              className="bg-[#ffffff] rounded-[28px] p-7 border border-[#e6e6e8] flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 h-full"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-[32px] font-bold text-[#0071e3] tracking-tight tabular-nums">
-                    {step.num}
-                  </span>
-                  <span className="text-[11px] font-semibold text-[#86868b] bg-[#f5f5f7] px-2.5 py-1 rounded-full">
-                    {step.duration}
-                  </span>
+            <ScrollReveal key={idx} delay={idx * 0.09} yOffset={26} className="h-full">
+              <div className="spot spot-glow relative glass rounded-[24px] p-7 h-full flex flex-col justify-between overflow-hidden transition-transform duration-500 hover:-translate-y-1">
+                <div className="relative z-[1]">
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-[40px] font-semibold tracking-[-0.04em] leading-none bg-gradient-to-b from-ink to-ink/25 bg-clip-text text-transparent">
+                      {step.num}
+                    </span>
+                    <span className="text-[11px] font-medium text-neon-glow px-3 py-1 rounded-full bg-neon-glow/10 ">
+                      {step.duration}
+                    </span>
+                  </div>
+                  <h3 className="text-[18px] font-semibold tracking-[-0.02em] text-white leading-snug mb-3">{step.title}</h3>
+                  <p className="text-[14px] text-muted-steel leading-[1.6] mb-7">{step.desc}</p>
                 </div>
-
-                <h3 className="text-[17px] font-semibold text-[#1d1d1f] leading-snug mb-3">
-                  {step.title}
-                </h3>
-
-                <p className="text-[13px] text-[#707070] leading-[1.5] mb-6">
-                  {step.desc}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-[#f5f5f7] text-[11px] font-medium text-[#1d1d1f] flex items-center gap-1.5">
-                <CheckCircle2 size={13} className="text-[#0071e3] shrink-0" />
-                <span>{step.deliverable}</span>
+                <div className="relative z-[1] pt-4 border-t border-black/[0.07] text-[12px] font-medium text-white/90 flex items-center gap-2">
+                  <CheckCircle2 size={14} className="text-neon-glow shrink-0" />
+                  <span>{step.deliverable}</span>
+                </div>
               </div>
             </ScrollReveal>
           ))}
         </div>
 
-        {/* Big Conversion Banner Card with ScrollReveal */}
-        <ScrollReveal delay={0.2} yOffset={24}>
-          <div className="bg-[#ffffff] rounded-[28px] p-8 md:p-12 border border-[#d6d6d6] text-center max-w-3xl mx-auto">
-            <span className="text-[#b64400] text-[12px] font-semibold tracking-[-0.12px] block mb-2">
-              {isPt ? 'Primeiro Passo Sem Custo' : 'Zero-Risk First Step'}
-            </span>
-            <h3 className="text-[26px] font-semibold text-[#1d1d1f] tracking-tight mb-3">
-              {isPt
-                ? 'Pronto para identificar os gargalos da sua operação?'
-                : 'Ready to identify the biggest bottlenecks in your business?'}
-            </h3>
-            <p className="text-[15px] text-[#707070] max-w-lg mx-auto mb-8 font-normal">
-              {isPt
-                ? 'Em 30 minutos analisamos seus processos atuais e entregamos um roteiro técnico personalizado com as oportunidades de automação.'
-                : 'In a 30-minute session we audit your current workflows and deliver a custom roadmap with actionable AI opportunities.'}
-            </p>
-            <button
-              onClick={onOpenDiagnosis}
-              className="px-6 py-3 text-[14px] font-medium text-white bg-[#0071e3] hover:bg-[#0077ed] rounded-full transition-all inline-flex items-center gap-2"
-            >
-              <span>{t('hero.cta.primary')}</span>
-              <ArrowRight size={15} />
-            </button>
+        <ScrollReveal delay={0.1} yOffset={30}>
+          <div className="spot spot-glow relative glass rounded-[32px] px-8 py-16 md:py-24 text-center overflow-hidden">
+            <div aria-hidden className="absolute left-1/2 top-0 -translate-x-1/2 w-[720px] h-[340px] rounded-full bg-hero-sky blur-[90px] pointer-events-none" />
+            <div className="relative z-[1]">
+              <span className="text-eyebrow block mb-5">{isPt ? 'Primeiro passo sem custo' : 'Zero-risk first step'}</span>
+              <h3 className="text-heading max-w-[760px] mx-auto mb-5">
+                {isPt
+                  ? 'Pronto para identificar os gargalos da sua operação?'
+                  : 'Ready to identify the biggest bottlenecks in your business?'}
+              </h3>
+              <p className="text-[18px] leading-[1.55] text-muted-steel max-w-[560px] mx-auto mb-10">
+                {isPt
+                  ? 'Em 30 minutos analisamos seus processos atuais e entregamos um roteiro técnico com as oportunidades de automação.'
+                  : 'In a 30-minute session we audit your current workflows and deliver a custom roadmap with actionable AI opportunities.'}
+              </p>
+              <MagneticButton onClick={onOpenDiagnosis}>
+                <span>{t('hero.cta.primary')}</span>
+                <ArrowRight size={17} />
+              </MagneticButton>
+            </div>
           </div>
         </ScrollReveal>
       </div>
