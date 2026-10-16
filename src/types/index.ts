@@ -1,17 +1,18 @@
 export type Language = 'pt' | 'en';
 
-export interface DiagnosisResult {
-  executiveSummary: string;
-  projectedAnnualSavings: number;
-  monthlyHoursSaved: number;
-  paybackMonths: number;
-  recommendedAutomations: Array<{
-    title: string;
-    description: string;
-    hoursSavedPerWeek: number;
-    architecture: string;
-  }>;
-  immediateNextStep: string;
+export interface MeetingBooking {
+  id: string;
+  companyName: string;
+  industry: string;
+  teamSize: number;
+  manualHours: number;
+  bottleneck: string;
+  contactName: string;
+  contactInfo: string;
+  preferredDate: string;
+  preferredTime: string;
+  meetingLink: string;
+  bookedAt: string;
 }
 
 export interface AutomationScenario {

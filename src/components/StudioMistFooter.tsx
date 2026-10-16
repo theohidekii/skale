@@ -55,7 +55,7 @@ export const StudioMistFooter: React.FC = () => {
             </span>
             <ul className="space-y-2">
               <li>
-                <span className="text-[#1d1d1f] font-medium">Gemini 3.8 Flash Engine</span>
+                <span className="text-[#1d1d1f] font-medium">{isPt ? 'Pipelines & Automações Sob Medida' : 'Custom Automation Pipelines'}</span>
               </li>
               <li>
                 <span>WhatsApp Cloud API Oficial</span>

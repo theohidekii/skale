@@ -97,12 +97,12 @@ const translations: Record<Language, Record<string, string>> = {
     'method.step4.title': 'Treinamento & Monitoramento Contínuo',
     'method.step4.desc': 'Capacitamos os operadores da sua equipe e monitoramos a execução com métricas transparentes e melhorias contínuas.',
 
-    // Diagnostic Modal
-    'modal.title': 'Diagnóstico Estratégico de IA para sua PME',
-    'modal.subtitle': 'Alimentado pelo novo modelo Gemini 3.8 Flash para mapear instantaneamente o potencial de automação do seu negócio.',
+    // Diagnostic & Meeting Modal
+    'modal.title': 'Agendar Diagnóstico Técnico de Processos',
+    'modal.subtitle': 'Reunião estratégica de 30 minutos com nossos arquitetos de software para mapear gargalos e automatizar fluxos na sua empresa.',
     'modal.step1': 'Dados da Empresa',
-    'modal.step2': 'Gargalo Operacional',
-    'modal.step3': 'Resultado & Recomendações',
+    'modal.step2': 'Gargalo & Horário',
+    'modal.step3': 'Reunião Confirmada',
     'modal.field.company': 'Nome da Empresa',
     'modal.field.industry': 'Segmento / Indústria',
     'modal.field.teamSize': 'Número de Colaboradores',
@@ -110,12 +110,12 @@ const translations: Record<Language, Record<string, string>> = {
     'modal.field.hours': 'Horas semanais estimadas gastas nesse gargalo',
     'modal.field.name': 'Seu Nome e Cargo',
     'modal.field.contact': 'WhatsApp ou E-mail Profissional',
-    'modal.btn.generate': 'Gerar Diagnóstico com Gemini 3.8 Flash',
-    'modal.btn.submitting': 'Analisando processos com Gemini 3.8 Flash...',
-    'modal.btn.next': 'Avançar',
+    'modal.btn.generate': 'Agendar Reunião Automaticamente',
+    'modal.btn.submitting': 'Confirmando agendamento na agenda...',
+    'modal.btn.next': 'Avançar para Horário',
     'modal.btn.prev': 'Voltar',
-    'modal.btn.confirmBooking': 'Confirmar Agendamento com Arquiteto de Software',
-    'modal.bookingSuccess': 'Diagnóstico enviado com sucesso! Nossa equipe técnica entrará em contato em até 2 horas úteis.',
+    'modal.btn.confirmBooking': 'Adicionar ao Calendário',
+    'modal.bookingSuccess': 'Reunião agendada com sucesso! Enviamos a confirmação e link do Google Meet para seu contato.',
 
     // Footer
     'footer.rights': 'Todos os direitos reservados. Skale Tech Software House Ltda.',
@@ -212,12 +212,12 @@ const translations: Record<Language, Record<string, string>> = {
     'method.step4.title': 'Staff Enablement & Ongoing Optimization',
     'method.step4.desc': 'We train your operators and continuously monitor pipeline telemetry with transparent reporting and iterative refinements.',
 
-    // Diagnostic Modal
-    'modal.title': 'Strategic AI Diagnosis for your SMB',
-    'modal.subtitle': 'Powered by the new Gemini 3.8 Flash model to instantly map your company automation potential.',
+    // Diagnostic & Meeting Modal
+    'modal.title': 'Book Process & Automation Discovery Session',
+    'modal.subtitle': 'Direct 30-minute strategic consultation with our software architects to map and automate your company workflows.',
     'modal.step1': 'Company Profile',
-    'modal.step2': 'Operational Bottleneck',
-    'modal.step3': 'Diagnosis & Strategic Roadmap',
+    'modal.step2': 'Bottleneck & Time Slot',
+    'modal.step3': 'Meeting Confirmed',
     'modal.field.company': 'Company Name',
     'modal.field.industry': 'Industry / Sector',
     'modal.field.teamSize': 'Team Headcount',
@@ -225,12 +225,12 @@ const translations: Record<Language, Record<string, string>> = {
     'modal.field.hours': 'Estimated weekly hours lost to this bottleneck',
     'modal.field.name': 'Your Name & Title',
     'modal.field.contact': 'Work Email or WhatsApp',
-    'modal.btn.generate': 'Generate Diagnosis with Gemini 3.8 Flash',
-    'modal.btn.submitting': 'Analyzing workflows with Gemini 3.8 Flash...',
-    'modal.btn.next': 'Next',
+    'modal.btn.generate': 'Schedule Meeting Automatically',
+    'modal.btn.submitting': 'Confirming calendar slot...',
+    'modal.btn.next': 'Next: Select Time Slot',
     'modal.btn.prev': 'Back',
-    'modal.btn.confirmBooking': 'Confirm Call with Software Architect',
-    'modal.bookingSuccess': 'Diagnosis roadmap sent successfully! Our lead architect will follow up within 2 business hours.',
+    'modal.btn.confirmBooking': 'Add to Google Calendar',
+    'modal.bookingSuccess': 'Meeting confirmed! Google Meet link and details sent to your contact.',
 
     // Footer
     'footer.rights': 'All rights reserved. Skale Tech Software House.',

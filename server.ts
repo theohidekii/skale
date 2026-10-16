@@ -30,7 +30,24 @@ const ai = new GoogleGenAI({
   },
 });
 
-// Diagnostic API using the latest gemini-3.8-flash model
+// Meeting booking store
+const scheduledMeetings: any[] = [];
+
+app.post('/api/book-meeting', (req, res) => {
+  const booking = req.body;
+  scheduledMeetings.push({
+    ...booking,
+    receivedAt: new Date().toISOString(),
+  });
+  console.log(`[Meeting Booked] For ${booking?.companyName} (${booking?.contactName}) at ${booking?.preferredDate} ${booking?.preferredTime}`);
+  return res.json({ success: true, booking });
+});
+
+app.get('/api/meetings', (_req, res) => {
+  return res.json({ success: true, meetings: scheduledMeetings });
+});
+
+// Diagnostic API
 app.post('/api/diagnose', async (req, res) => {
   try {
     const {

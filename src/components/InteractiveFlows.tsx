@@ -25,7 +25,7 @@ export const InteractiveFlows: React.FC = () => {
           latency: '120ms',
         },
         {
-          title: isPt ? 'Processamento Semântico com Gemini 3.8 Flash' : 'Semantic Processing with Gemini 3.8 Flash',
+          title: isPt ? 'Processamento e Regras de Negócio Inteligentes' : 'Intelligent Business Logic & Validation',
           detail: isPt
             ? 'Compreensão de intenção de compra, extração de SKU e regras comerciais.'
             : 'Purchase intent parsing, SKU extraction, and margin validation.',
@@ -250,8 +250,8 @@ export const InteractiveFlows: React.FC = () => {
                 </div>
                 <p className="text-[13px] text-[#1d1d1f] leading-[1.4]">
                   {isPt
-                    ? 'Execução contínua 24/7 orquestrada com Gemini 3.8 Flash, auditoria completa de ponta a ponta e zero atrito.'
-                    : 'Continuous 24/7 orchestration with Gemini 3.8 Flash, audited end-to-end trace, and instant delivery.'}
+                    ? 'Execução contínua 24/7 com pipelines autônomos de alta disponibilidade, auditoria completa e zero atrito.'
+                    : 'Continuous 24/7 orchestration with high-availability autonomous pipelines, audited end-to-end trace, and instant delivery.'}
                 </p>
               </div>
             </div>
