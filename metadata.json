@@ -1,0 +1,6 @@
+{
+  "name": "Skale Tech",
+  "description": "Software house especializada em IA e automações inteligentes para PMEs no padrão Apple White Gallery com simulador de ROI e diagnóstico inteligente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
